@@ -1,11 +1,16 @@
 # Funkce kontrola telefonního čísla
+# def check_input(cislo):
+#     pocet_cisel = len(cislo)
+
+#     if pocet_cisel == 9 or pocet_cisel == 13:
+#         return True
+#     else:
+#         return False
+
 def check_input(cislo):
     pocet_cisel = len(cislo)
+    return pocet_cisel == 9 or check_areacode(cislo) 
 
-    if pocet_cisel == 9 or pocet_cisel == 13:
-        return True
-    else:
-        return False
 
 # Funkce kontrola textu a výpočet ceny
 def check_text(text):
@@ -16,21 +21,15 @@ def check_text(text):
     return cena_zaokr
 
 # Funkce pro kontrolu předvolby
-def check_areacode(predvolba):
-    predvolba = telefonni_cislo[0:3]
-    
-    if telefonni_cislo == 13:
-        predvolba[0:3] == +420
-        return True
-    else:
-        return False 
+def check_areacode(cislo):
+    predvolba = cislo[0:4]
+    return len(cislo) == 13 and predvolba ==  '+420'
 
 
 telefonni_cislo = input("Zadejte telefonní číslo příjemce:")
-predvolba = telefonni_cislo[0:3]
+predvolba = cislo[0:4]
 
-if check_input(telefonni_cislo) == True:
-        predvolba = check_areacode(predvolba)
+if check_input(telefonni_cislo):
         text = input("Zde zadejte text Vaší zprávy:")
         cena = check_text(text)
         print("Cena zprávy: " + str(cena))
